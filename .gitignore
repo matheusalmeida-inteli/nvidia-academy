@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual envs
+.venv/
+venv/
+env/
+.pixi/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Data (large files)
+data/raw/
+data/processed/
+data/exports/
+*.log
+scraper_*.log
+
+# Node
+node_modules/
+.next/
+out/
+dist/
+.tsbuildinfo
+*.tsbuildinfo
+
+# Qdrant
+qdrant_data/
+qdrant_storage/
+
+# Postgres
+postgres_data/
+pg_data/
+
+# Logs & runtime
+logs/
+.qdrant-initialized
+snapshots/
+
+# Eval / baseline snapshots (optional)
+baseline_*.json

@@ -1,0 +1,843 @@
+{
+  "reranker": "RerankFallback",
+  "n_samples": 33,
+  "top_k": 3,
+  "metrics": {
+    "retrieval_hit_at_k": 0.627,
+    "citation_validity_rate": 1.0,
+    "recommendation_precision": 0.732,
+    "recommendation_recall": 0.672
+  },
+  "per_query": [
+    {
+      "id": "e001",
+      "query": "optimize LLM inference production latency",
+      "retrieved_techs": [
+        "TensorRT-LLM",
+        "NVIDIA Triton Inference Server"
+      ],
+      "recommended_techs": [
+        "TensorRT-LLM",
+        "NVIDIA Triton Inference Server"
+      ],
+      "expected": [
+        "NVIDIA NIM",
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "retrieval_hits": [
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "recommendation_hits": [
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e002",
+      "query": "fraud detection real-time financial",
+      "retrieved_techs": [
+        "NVIDIA Morpheus",
+        "NVIDIA NIM"
+      ],
+      "recommended_techs": [
+        "NVIDIA Morpheus",
+        "NVIDIA NIM"
+      ],
+      "expected": [
+        "cuML",
+        "Morpheus",
+        "RAPIDS"
+      ],
+      "retrieval_hits": [
+        "Morpheus"
+      ],
+      "recommendation_hits": [
+        "Morpheus"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e003",
+      "query": "speech recognition Portuguese Brazil voice",
+      "retrieved_techs": [
+        "NVIDIA Riva",
+        "NVIDIA NeMo"
+      ],
+      "recommended_techs": [
+        "NVIDIA Riva",
+        "NVIDIA NeMo"
+      ],
+      "expected": [
+        "Riva",
+        "NVIDIA NIM"
+      ],
+      "retrieval_hits": [
+        "Riva"
+      ],
+      "recommendation_hits": [
+        "Riva"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e004",
+      "query": "medical imaging AI healthcare diagnosis",
+      "retrieved_techs": [
+        "NVIDIA NIM",
+        "NVIDIA Clara"
+      ],
+      "recommended_techs": [
+        "NVIDIA NIM",
+        "NVIDIA Clara"
+      ],
+      "expected": [
+        "Clara",
+        "MONAI",
+        "NIM"
+      ],
+      "retrieval_hits": [
+        "Clara",
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "Clara",
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e005",
+      "query": "GPU accelerated data science large dataset",
+      "retrieved_techs": [
+        "NVIDIA RAPIDS",
+        "RAPIDS",
+        "cuML"
+      ],
+      "recommended_techs": [
+        "NVIDIA RAPIDS",
+        "RAPIDS",
+        "cuML"
+      ],
+      "expected": [
+        "RAPIDS",
+        "cuDF",
+        "cuML"
+      ],
+      "retrieval_hits": [
+        "RAPIDS",
+        "cuML"
+      ],
+      "recommendation_hits": [
+        "RAPIDS",
+        "cuML"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e006",
+      "query": "robotics simulation autonomous machine",
+      "retrieved_techs": [
+        "NVIDIA Isaac",
+        "NVIDIA Omniverse"
+      ],
+      "recommended_techs": [
+        "NVIDIA Isaac",
+        "NVIDIA Omniverse"
+      ],
+      "expected": [
+        "Isaac",
+        "Omniverse"
+      ],
+      "retrieval_hits": [
+        "Isaac",
+        "Omniverse"
+      ],
+      "recommendation_hits": [
+        "Isaac",
+        "Omniverse"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e007",
+      "query": "startup program benefits GPU credits NVIDIA",
+      "retrieved_techs": [
+        "NVIDIA Inception"
+      ],
+      "recommended_techs": [
+        "NVIDIA Inception"
+      ],
+      "expected": [
+        "NVIDIA Inception"
+      ],
+      "retrieval_hits": [
+        "NVIDIA Inception"
+      ],
+      "recommendation_hits": [
+        "NVIDIA Inception"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e008",
+      "query": "AI agent safety guardrails enterprise",
+      "retrieved_techs": [
+        "NeMo Guardrails",
+        "AI Enterprise"
+      ],
+      "recommended_techs": [
+        "NeMo Guardrails",
+        "AI Enterprise"
+      ],
+      "expected": [
+        "NeMo Guardrails",
+        "NeMo"
+      ],
+      "retrieval_hits": [
+        "NeMo Guardrails",
+        "NeMo"
+      ],
+      "recommendation_hits": [
+        "NeMo Guardrails",
+        "NeMo"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e009",
+      "query": "digital twin factory simulation 3D",
+      "retrieved_techs": [
+        "NVIDIA Omniverse",
+        "NVIDIA Isaac"
+      ],
+      "recommended_techs": [
+        "NVIDIA Omniverse",
+        "NVIDIA Isaac"
+      ],
+      "expected": [
+        "Omniverse"
+      ],
+      "retrieval_hits": [
+        "Omniverse"
+      ],
+      "recommendation_hits": [
+        "Omniverse"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e010",
+      "query": "LLM fine-tuning customization proprietary data",
+      "retrieved_techs": [
+        "NVIDIA NeMo",
+        "TensorRT-LLM"
+      ],
+      "recommended_techs": [
+        "NVIDIA NeMo",
+        "TensorRT-LLM"
+      ],
+      "expected": [
+        "NeMo",
+        "NVIDIA NIM"
+      ],
+      "retrieval_hits": [
+        "NeMo"
+      ],
+      "recommendation_hits": [
+        "NeMo"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e011",
+      "query": "cybersecurity threat detection anomaly SOC",
+      "retrieved_techs": [
+        "NVIDIA Morpheus",
+        "AI Enterprise"
+      ],
+      "recommended_techs": [
+        "NVIDIA Morpheus",
+        "AI Enterprise"
+      ],
+      "expected": [
+        "Morpheus",
+        "RAPIDS"
+      ],
+      "retrieval_hits": [
+        "Morpheus"
+      ],
+      "recommendation_hits": [
+        "Morpheus"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e012",
+      "query": "agriculture precision farming AI",
+      "retrieved_techs": [
+        "NVIDIA NIM",
+        "RAPIDS",
+        "NVIDIA Isaac"
+      ],
+      "recommended_techs": [
+        "NVIDIA NIM",
+        "RAPIDS",
+        "NVIDIA Isaac"
+      ],
+      "expected": [
+        "RAPIDS",
+        "cuML",
+        "Isaac",
+        "cuDF"
+      ],
+      "retrieval_hits": [
+        "RAPIDS",
+        "Isaac"
+      ],
+      "recommendation_hits": [
+        "RAPIDS",
+        "Isaac"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e013",
+      "query": "model serving production kubernetes",
+      "retrieved_techs": [
+        "NVIDIA Triton Inference Server",
+        "Triton",
+        "AI Enterprise"
+      ],
+      "recommended_techs": [
+        "NVIDIA Triton Inference Server",
+        "Triton",
+        "AI Enterprise"
+      ],
+      "expected": [
+        "Triton",
+        "AI Enterprise"
+      ],
+      "retrieval_hits": [
+        "Triton",
+        "AI Enterprise"
+      ],
+      "recommendation_hits": [
+        "Triton",
+        "AI Enterprise"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e014",
+      "query": "CUDA programming custom kernel optimization",
+      "retrieved_techs": [
+        "CUDA"
+      ],
+      "recommended_techs": [
+        "CUDA"
+      ],
+      "expected": [
+        "CUDA"
+      ],
+      "retrieval_hits": [
+        "CUDA"
+      ],
+      "recommendation_hits": [
+        "CUDA"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "e015",
+      "query": "generative AI video image synthesis",
+      "retrieved_techs": [
+        "NVIDIA NIM",
+        "NVIDIA Omniverse"
+      ],
+      "recommended_techs": [
+        "NVIDIA NIM",
+        "NVIDIA Omniverse"
+      ],
+      "expected": [
+        "NVIDIA NIM",
+        "Omniverse"
+      ],
+      "retrieval_hits": [
+        "NVIDIA NIM",
+        "Omniverse"
+      ],
+      "recommendation_hits": [
+        "NVIDIA NIM",
+        "Omniverse"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p001",
+      "query": "startup de saúde com modelos de imagem médica",
+      "retrieved_techs": [
+        "NVIDIA Clara",
+        "NVIDIA NIM",
+        "NVIDIA Inception"
+      ],
+      "recommended_techs": [
+        "NVIDIA Clara",
+        "NVIDIA NIM",
+        "NVIDIA Inception"
+      ],
+      "expected": [
+        "Clara",
+        "MONAI",
+        "NIM"
+      ],
+      "retrieval_hits": [
+        "Clara",
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "Clara",
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p002",
+      "query": "fintech com detecção de fraude em tempo real",
+      "retrieved_techs": [
+        "NVIDIA NIM",
+        "NVIDIA Morpheus"
+      ],
+      "recommended_techs": [
+        "NVIDIA NIM",
+        "NVIDIA Morpheus"
+      ],
+      "expected": [
+        "Morpheus",
+        "RAPIDS",
+        "cuML",
+        "NIM"
+      ],
+      "retrieval_hits": [
+        "Morpheus",
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "Morpheus",
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p003",
+      "query": "call center com voz e transcrição em português",
+      "retrieved_techs": [
+        "NVIDIA Riva",
+        "NVIDIA Morpheus"
+      ],
+      "recommended_techs": [
+        "NVIDIA Riva",
+        "NVIDIA Morpheus"
+      ],
+      "expected": [
+        "Riva",
+        "NIM"
+      ],
+      "retrieval_hits": [
+        "Riva"
+      ],
+      "recommendation_hits": [
+        "Riva"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p004",
+      "query": "startup de agronegócio com dados de sensores e satélite",
+      "retrieved_techs": [
+        "NVIDIA NIM",
+        "RAPIDS",
+        "NVIDIA Isaac"
+      ],
+      "recommended_techs": [
+        "NVIDIA NIM",
+        "RAPIDS",
+        "NVIDIA Isaac"
+      ],
+      "expected": [
+        "RAPIDS",
+        "cuML",
+        "Isaac",
+        "cuDF"
+      ],
+      "retrieval_hits": [
+        "RAPIDS",
+        "Isaac"
+      ],
+      "recommendation_hits": [
+        "RAPIDS",
+        "Isaac"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p005",
+      "query": "startup de robótica com simulação de robôs",
+      "retrieved_techs": [
+        "NVIDIA NeMo",
+        "NeMo Guardrails",
+        "NVIDIA NIM"
+      ],
+      "recommended_techs": [
+        "NVIDIA NeMo",
+        "NeMo Guardrails",
+        "NVIDIA NIM"
+      ],
+      "expected": [
+        "Isaac",
+        "Omniverse"
+      ],
+      "retrieval_hits": [],
+      "recommendation_hits": [],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p006",
+      "query": "como servir modelos de aprendizado de máquina em produção",
+      "retrieved_techs": [
+        "cuML",
+        "NVIDIA NIM",
+        "TensorRT-LLM"
+      ],
+      "recommended_techs": [
+        "cuML",
+        "NVIDIA NIM",
+        "TensorRT-LLM"
+      ],
+      "expected": [
+        "Triton",
+        "NIM",
+        "AI Enterprise"
+      ],
+      "retrieval_hits": [
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p007",
+      "query": "agentes de IA com governança e segurança",
+      "retrieved_techs": [
+        "NVIDIA NIM",
+        "NeMo Guardrails"
+      ],
+      "recommended_techs": [
+        "NVIDIA NIM",
+        "NeMo Guardrails"
+      ],
+      "expected": [
+        "NeMo Guardrails",
+        "NeMo"
+      ],
+      "retrieval_hits": [
+        "NeMo Guardrails",
+        "NeMo"
+      ],
+      "recommendation_hits": [
+        "NeMo Guardrails",
+        "NeMo"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p008",
+      "query": "startup quer customizar modelo de linguagem com dados próprios",
+      "retrieved_techs": [
+        "NVIDIA NeMo",
+        "NVIDIA Inception",
+        "NVIDIA NIM"
+      ],
+      "recommended_techs": [
+        "NVIDIA NeMo",
+        "NVIDIA Inception",
+        "NVIDIA NIM"
+      ],
+      "expected": [
+        "NeMo",
+        "NIM"
+      ],
+      "retrieval_hits": [
+        "NeMo",
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "NeMo",
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p009",
+      "query": "processamento de grandes volumes de dados tabulares",
+      "retrieved_techs": [
+        "cuML",
+        "NVIDIA RAPIDS",
+        "cuDF"
+      ],
+      "recommended_techs": [
+        "cuML",
+        "NVIDIA RAPIDS",
+        "cuDF"
+      ],
+      "expected": [
+        "RAPIDS",
+        "cuDF",
+        "cuML"
+      ],
+      "retrieval_hits": [
+        "RAPIDS",
+        "cuDF",
+        "cuML"
+      ],
+      "recommendation_hits": [
+        "RAPIDS",
+        "cuDF",
+        "cuML"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p010",
+      "query": "cibersegurança detecção de ameaças em tempo real",
+      "retrieved_techs": [
+        "NVIDIA Morpheus",
+        "NVIDIA NIM"
+      ],
+      "recommended_techs": [
+        "NVIDIA Morpheus",
+        "NVIDIA NIM"
+      ],
+      "expected": [
+        "Morpheus",
+        "RAPIDS"
+      ],
+      "retrieval_hits": [
+        "Morpheus"
+      ],
+      "recommendation_hits": [
+        "Morpheus"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p011",
+      "query": "benefícios do programa NVIDIA para startups em estágio inicial",
+      "retrieved_techs": [
+        "NVIDIA Inception"
+      ],
+      "recommended_techs": [
+        "NVIDIA Inception"
+      ],
+      "expected": [
+        "NVIDIA Inception"
+      ],
+      "retrieval_hits": [
+        "NVIDIA Inception"
+      ],
+      "recommendation_hits": [
+        "NVIDIA Inception"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "p012",
+      "query": "otimizar custo e latência de inferência de LLM em produção",
+      "retrieved_techs": [
+        "TensorRT-LLM",
+        "NVIDIA Triton Inference Server"
+      ],
+      "recommended_techs": [
+        "TensorRT-LLM",
+        "NVIDIA Triton Inference Server"
+      ],
+      "expected": [
+        "NIM",
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "retrieval_hits": [
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "recommendation_hits": [
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "a001",
+      "query": "como servir modelos de forma escalável",
+      "retrieved_techs": [
+        "NVIDIA NIM",
+        "NVIDIA RAPIDS",
+        "cuML"
+      ],
+      "recommended_techs": [
+        "NVIDIA NIM",
+        "NVIDIA RAPIDS",
+        "cuML"
+      ],
+      "expected": [
+        "Triton",
+        "NIM",
+        "AI Enterprise"
+      ],
+      "retrieval_hits": [
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "a002",
+      "query": "stack para aplicações de IA generativa",
+      "retrieved_techs": [
+        "NVIDIA Omniverse",
+        "AI-Native Services",
+        "NVIDIA NIM"
+      ],
+      "recommended_techs": [
+        "NVIDIA Omniverse",
+        "AI-Native Services",
+        "NVIDIA NIM"
+      ],
+      "expected": [
+        "NIM",
+        "NeMo",
+        "TensorRT-LLM"
+      ],
+      "retrieval_hits": [
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "a003",
+      "query": "acelerar ciência de dados com GPU",
+      "retrieved_techs": [
+        "NVIDIA RAPIDS",
+        "cuML",
+        "TensorRT-LLM"
+      ],
+      "recommended_techs": [
+        "NVIDIA RAPIDS",
+        "cuML",
+        "TensorRT-LLM"
+      ],
+      "expected": [
+        "RAPIDS",
+        "cuDF",
+        "cuML",
+        "CUDA"
+      ],
+      "retrieval_hits": [
+        "RAPIDS",
+        "cuML"
+      ],
+      "recommendation_hits": [
+        "RAPIDS",
+        "cuML"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "a004",
+      "query": "saúde e inteligência artificial diagnósticos",
+      "retrieved_techs": [
+        "NVIDIA Clara",
+        "NVIDIA NIM"
+      ],
+      "recommended_techs": [
+        "NVIDIA Clara",
+        "NVIDIA NIM"
+      ],
+      "expected": [
+        "Clara",
+        "MONAI",
+        "NIM"
+      ],
+      "retrieval_hits": [
+        "Clara",
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "Clara",
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "a005",
+      "query": "otimização de LLM para redução de custo",
+      "retrieved_techs": [
+        "TensorRT-LLM",
+        "NVIDIA Triton Inference Server"
+      ],
+      "recommended_techs": [
+        "TensorRT-LLM",
+        "NVIDIA Triton Inference Server"
+      ],
+      "expected": [
+        "TensorRT-LLM",
+        "NIM",
+        "Triton"
+      ],
+      "retrieval_hits": [
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "recommendation_hits": [
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "citation_validity": 1.0
+    },
+    {
+      "id": "a006",
+      "query": "nvidia inception o que é e benefícios",
+      "retrieved_techs": [
+        "NVIDIA Inception",
+        "NVIDIA NIM"
+      ],
+      "recommended_techs": [
+        "NVIDIA Inception",
+        "NVIDIA NIM"
+      ],
+      "expected": [
+        "NVIDIA Inception",
+        "NIM",
+        "NeMo"
+      ],
+      "retrieval_hits": [
+        "NVIDIA Inception",
+        "NIM"
+      ],
+      "recommendation_hits": [
+        "NVIDIA Inception",
+        "NIM"
+      ],
+      "citation_validity": 1.0
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "reranker": "RerankFallback",
+  "n_samples": 15,
+  "top_k": 3,
+  "metrics": {
+    "mrr": 0.9,
+    "hit_rate@1": 0.8,
+    "recall@1": 0.45555555555555555,
+    "precision@1": 0.8,
+    "hit_rate@3": 1.0,
+    "recall@3": 0.7222222222222221,
+    "precision@3": 0.6666666666666665,
+    "hit_rate@5": 1.0,
+    "recall@5": 0.7222222222222221,
+    "precision@5": 0.6666666666666665
+  },
+  "latency_avg_ms": 11.3,
+  "latency_p95_ms": 16.1,
+  "per_query": [
+    {
+      "id": "e001",
+      "query": "optimize LLM inference production latency",
+      "expected": [
+        "NVIDIA NIM",
+        "TensorRT-LLM",
+        "Triton"
+      ],
+      "retrieved": [
+        "TensorRT-LLM",
+        "NVIDIA Inception",
+        "NVIDIA NIM"
+      ],
+      "hits": [
+        "TensorRT-LLM",
+        "NVIDIA NIM"
+      ],
+      "latency_ms": 16.1
+    },
+    {
+      "id": "e002",
+      "query": "fraud detection real-time financial",
+      "expected": [
+        "cuML",
+        "Morpheus",
+        "RAPIDS"
+      ],
+      "retrieved": [
+        "NVIDIA Morpheus",
+        "cuDF",
+        "NVIDIA NIM"
+      ],
+      "hits": [
+        "NVIDIA Morpheus"
+      ],
+      "latency_ms": 12.4
+    },
+    {
+      "id": "e003",
+      "query": "speech recognition Portuguese Brazil voice",
+      "expected": [
+        "Riva",
+        "NVIDIA NIM"
+      ],
+      "retrieved": [
+        "NVIDIA Riva",
+        "NVIDIA NeMo",
+        "NVIDIA NIM"
+      ],
+      "hits": [
+        "NVIDIA Riva",
+        "NVIDIA NIM"
+      ],
+      "latency_ms": 10.0
+    },
+    {
+      "id": "e004",
+      "query": "medical imaging AI healthcare diagnosis",
+      "expected": [
+        "Clara",
+        "MONAI",
+        "NIM"
+      ],
+      "retrieved": [
+        "NVIDIA Clara",
+        "NVIDIA NIM"
+      ],
+      "hits": [
+        "NVIDIA Clara",
+        "NVIDIA NIM"
+      ],
+      "latency_ms": 10.0
+    },
+    {
+      "id": "e005",
+      "query": "GPU accelerated data science large dataset",
+      "expected": [
+        "RAPIDS",
+        "cuDF",
+        "cuML"
+      ],
+      "retrieved": [
+        "cuDF",
+        "NVIDIA Inception",
+        "NVIDIA RAPIDS"
+      ],
+      "hits": [
+        "cuDF",
+        "NVIDIA RAPIDS"
+      ],
+      "latency_ms": 11.5
+    },
+    {
+      "id": "e006",
+      "query": "robotics simulation autonomous machine",
+      "expected": [
+        "Isaac",
+        "Omniverse"
+      ],
+      "retrieved": [
+        "NVIDIA Isaac",
+        "NVIDIA NIM"
+      ],
+      "hits": [
+        "NVIDIA Isaac"
+      ],
+      "latency_ms": 14.5
+    },
+    {
+      "id": "e007",
+      "query": "startup program benefits GPU credits NVIDIA",
+      "expected": [
+        "NVIDIA Inception"
+      ],
+      "retrieved": [
+        "NVIDIA Inception"
+      ],
+      "hits": [
+        "NVIDIA Inception"
+      ],
+      "latency_ms": 15.1
+    },
+    {
+      "id": "e008",
+      "query": "AI agent safety guardrails enterprise",
+      "expected": [
+        "NeMo Guardrails",
+        "NeMo"
+      ],
+      "retrieved": [
+        "NeMo Guardrails",
+        "NVIDIA NeMo"
+      ],
+      "hits": [
+        "NeMo Guardrails",
+        "NVIDIA NeMo"
+      ],
+      "latency_ms": 13.9
+    },
+    {
+      "id": "e009",
+      "query": "digital twin factory simulation 3D",
+      "expected": [
+        "Omniverse"
+      ],
+      "retrieved": [
+        "NVIDIA Isaac",
+        "NVIDIA Omniverse"
+      ],
+      "hits": [
+        "NVIDIA Omniverse"
+      ],
+      "latency_ms": 8.4
+    },
+    {
+      "id": "e010",
+      "query": "LLM fine-tuning customization proprietary data",
+      "expected": [
+        "NeMo",
+        "NVIDIA NIM"
+      ],
+      "retrieved": [
+        "AI Services",
+        "NVIDIA NeMo",
+        "NeMo Guardrails"
+      ],
+      "hits": [
+        "NVIDIA NeMo",
+        "NeMo Guardrails"
+      ],
+      "latency_ms": 8.9
+    },
+    {
+      "id": "e011",
+      "query": "cybersecurity threat detection anomaly SOC",
+      "expected": [
+        "Morpheus",
+        "RAPIDS"
+      ],
+      "retrieved": [
+        "NVIDIA Morpheus",
+        "Triton"
+      ],
+      "hits": [
+        "NVIDIA Morpheus"
+      ],
+      "latency_ms": 8.1
+    },
+    {
+      "id": "e012",
+      "query": "agriculture precision farming AI",
+      "expected": [
+        "RAPIDS",
+        "cuML",
+        "Isaac",
+        "cuDF"
+      ],
+      "retrieved": [
+        "NVIDIA NIM",
+        "NVIDIA Isaac",
+        "RAPIDS"
+      ],
+      "hits": [
+        "NVIDIA Isaac",
+        "RAPIDS"
+      ],
+      "latency_ms": 11.0
+    },
+    {
+      "id": "e013",
+      "query": "model serving production kubernetes",
+      "expected": [
+        "Triton",
+        "AI Enterprise"
+      ],
+      "retrieved": [
+        "Triton",
+        "AI-Native Services",
+        "NVIDIA Triton Inference Server"
+      ],
+      "hits": [
+        "Triton",
+        "NVIDIA Triton Inference Server"
+      ],
+      "latency_ms": 12.1
+    },
+    {
+      "id": "e014",
+      "query": "CUDA programming custom kernel optimization",
+      "expected": [
+        "CUDA"
+      ],
+      "retrieved": [
+        "CUDA",
+        "NeMo Guardrails"
+      ],
+      "hits": [
+        "CUDA"
+      ],
+      "latency_ms": 8.6
+    },
+    {
+      "id": "e015",
+      "query": "generative AI video image synthesis",
+      "expected": [
+        "NVIDIA NIM",
+        "Omniverse"
+      ],
+      "retrieved": [
+        "NVIDIA NIM",
+        "NVIDIA Omniverse",
+        "CUDA"
+      ],
+      "hits": [
+        "NVIDIA NIM",
+        "NVIDIA Omniverse"
+      ],
+      "latency_ms": 9.7
+    }
+  ]
+}

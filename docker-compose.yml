@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: nvidia_radar_postgres
+    environment:
+      POSTGRES_DB: nvidia_radar
+      POSTGRES_USER: ${POSTGRES_USER:-nvidia_radar}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nvidia_radar_pass}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-nvidia_radar} -d nvidia_radar"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: nvidia_radar_qdrant
+    ports:
+      - "${QDRANT_PORT:-6333}:6333"
+      - "${QDRANT_GRPC_PORT:-6334}:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/readyz"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  cohere-rerank:
+    image: ghcr.io/cohere-gpu/rerank-model:latest
+    container_name: nvidia_radar_rerank
+    environment:
+      CUDA_VISIBLE_DEVICES: "0"
+    ports:
+      - "${RERANK_PORT:-9000}:9000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+volumes:
+  postgres_data:
+  qdrant_data:

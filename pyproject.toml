@@ -1,0 +1,18 @@
+[project]
+name = "academy-nvidia-radar"
+version = "0.1.0"
+description = "NVIDIA Startup AI Radar — multi-agent platform for startup analysis"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "DTZ", "ISC"]
+ignore = ["E501", "ISC001"]
+
+[tool.pre-commit]
+repos = [
+    { repo = "https://github.com/pre-commit/pre-commit-hooks", rev = "v4.5.0", hooks = ["trailing-whitespace", "end-of-file-fixer"] },
+    { repo = "https://github.com/astral-sh/ruff-pre-commit", rev = "v0.2.0", hooks = ["ruff"] },
+]

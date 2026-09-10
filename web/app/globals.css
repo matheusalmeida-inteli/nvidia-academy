@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #0b0d10;
+    color: #e8ecf2;
+    font-feature-settings: "ss01", "cv11";
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: rgba(118, 185, 0, 0.35);
+    color: #ffffff;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #76b900;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  input,
+  button,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #262d3a;
+    border-radius: 999px;
+    border: 2px solid #0b0d10;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a4252;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-bg-surface border border-border-subtle rounded-lg;
+  }
+
+  .card-interactive {
+    @apply transition-[border-color,transform,box-shadow] duration-150 ease-out;
+  }
+  .card-interactive:hover {
+    @apply border-border-default -translate-y-px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-medium text-sm
+           transition-[background-color,border-color,color,box-shadow] duration-150 ease-out
+           rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-green
+           focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-accent-green text-text-inverse px-4 h-9 hover:bg-accent-green-soft
+           shadow-raise-sm hover:shadow-raise;
+  }
+  .btn-ghost {
+    @apply btn text-text-secondary h-9 px-3 hover:bg-bg-hover hover:text-text-primary;
+  }
+  .btn-outline {
+    @apply btn border border-border-default text-text-primary h-9 px-3
+           hover:border-border-strong hover:bg-bg-hover;
+  }
+  .btn-sm {
+    @apply h-7 px-2.5 text-xs;
+  }
+
+  .input {
+    @apply w-full bg-bg-base border border-border-default rounded-md
+           px-3 h-9 text-sm text-text-primary placeholder:text-text-tertiary
+           transition-all duration-150;
+  }
+  .input:focus {
+    border-color: #76b900;
+    box-shadow: 0 0 0 3px rgba(118, 185, 0, 0.15);
+  }
+  .input-textarea {
+    @apply input min-h-[80px] py-2 h-auto leading-relaxed;
+  }
+
+  .select {
+    @apply input pr-8 cursor-pointer appearance-none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239aa3b2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+  }
+  .select:focus {
+    border-color: #76b900;
+    box-shadow: 0 0 0 3px rgba(118, 185, 0, 0.15);
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-1.5 h-5 rounded text-2xs font-medium
+           border border-border-subtle bg-bg-base text-text-secondary
+           uppercase tracking-wider;
+  }
+
+  .badge-ai-native {
+    @apply badge text-accent-green border-accent-green/30 bg-accent-green-dim;
+  }
+  .badge-ai-enabled {
+    @apply badge text-accent-amber border-accent-amber/30 bg-accent-amber-dim;
+  }
+  .badge-wrapper {
+    @apply badge text-accent-red border-accent-red/30 bg-accent-red-dim;
+  }
+  .badge-non-ai {
+    @apply badge text-text-tertiary;
+  }
+
+  .stat-value {
+    @apply font-mono font-medium tabular-nums;
+  }
+
+  .divider {
+    @apply h-px w-full bg-border-subtle;
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer rounded;
+  }
+
+  .select-chevron {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239aa3b2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}

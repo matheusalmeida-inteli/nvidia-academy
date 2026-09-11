@@ -42,6 +42,19 @@ const CADENCE_DOT: Record<string, string> = {
   inativo: "bg-text-tertiary",
 };
 
+const ACTION_TYPES = [
+  { value: "email", label: "Email" },
+  { value: "call", label: "Call" },
+  { value: "linkedin", label: "LinkedIn" },
+  { value: "meetup", label: "Meetup" },
+  { value: "workshop", label: "Workshop" },
+  { value: "gtc", label: "GTC" },
+  { value: "demo_day", label: "Demo Day" },
+  { value: "introduction", label: "Introdução" },
+  { value: "pitch", label: "Pitch" },
+  { value: "follow_up", label: "Follow-up" },
+];
+
 export default function PipelinePage() {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(true);
@@ -65,6 +78,14 @@ export default function PipelinePage() {
   const handleStatus = async (id: number, status: string) => {
     await updateCandidate(id, { status });
     setCandidates((cs) => cs.map((c) => (c.id === id ? { ...c, status } : c)));
+  };
+
+  const handleNextAction = async (
+    id: number,
+    patch: { next_action_date?: string | null; next_action_type?: string },
+  ) => {
+    await updateCandidate(id, patch);
+    setCandidates((cs) => cs.map((c) => (c.id === id ? { ...c, ...patch } : c)));
   };
 
   const handleDelete = async (id: number) => {
@@ -177,6 +198,7 @@ export default function PipelinePage() {
                 key={c.id}
                 c={c}
                 onStatus={(s) => handleStatus(c.id, s)}
+                onNextAction={(p) => handleNextAction(c.id, p)}
                 onDelete={() => handleDelete(c.id)}
               />
             ))}
@@ -239,10 +261,12 @@ function StatCard({
 function CandidateRow({
   c,
   onStatus,
+  onNextAction,
   onDelete,
 }: {
   c: Candidate;
   onStatus: (s: string) => void;
+  onNextAction: (p: { next_action_date?: string | null; next_action_type?: string }) => void;
   onDelete: () => void;
 }) {
   const meta = STATUS_META[c.status] || STATUS_META.identificado;
@@ -310,20 +334,35 @@ function CandidateRow({
           <span className="text-text-secondary">{c.nurture_cadence}</span>
         </div>
 
-        {/* Next action */}
-        {c.next_action_date && (
-          <div className="shrink-0 text-right">
-            <p className="text-2xs text-text-tertiary uppercase tracking-wider">
-              {c.next_action_type}
-            </p>
-            <p className="text-xs text-text-primary font-mono">
-              {new Date(c.next_action_date).toLocaleDateString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-              })}
-            </p>
+        {/* Next action — editável: alimenta a fila de nutrição */}
+        <div className="shrink-0 flex flex-col items-end gap-1">
+          <label className="text-2xs text-text-tertiary uppercase tracking-wider">
+            Próxima ação
+          </label>
+          <div className="flex items-center gap-1">
+            <input
+              type="date"
+              value={c.next_action_date ?? ""}
+              onChange={(e) =>
+                onNextAction({ next_action_date: e.target.value || null })
+              }
+              className="h-7 px-1.5 text-xs font-mono bg-bg-surface border border-border-default rounded
+                         text-text-primary focus:outline-none focus:border-accent-green cursor-pointer"
+            />
+            <select
+              value={c.next_action_type ?? "follow_up"}
+              onChange={(e) => onNextAction({ next_action_type: e.target.value })}
+              className="h-7 px-1.5 text-xs bg-bg-surface border border-border-default rounded
+                         text-text-secondary focus:outline-none focus:border-accent-green cursor-pointer"
+            >
+              {ACTION_TYPES.map((a) => (
+                <option key={a.value} value={a.value}>
+                  {a.label}
+                </option>
+              ))}
+            </select>
           </div>
-        )}
+        </div>
 
         {/* Assigned */}
         {c.assigned_to && (

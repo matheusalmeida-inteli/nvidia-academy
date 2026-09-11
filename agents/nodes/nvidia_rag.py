@@ -158,7 +158,7 @@ async def nvidia_rag(state: AgentState) -> AgentState:
 
     # Melhoria: consultas das startups rodam em paralelo (asyncio.gather), em
     # vez de sequenciais — reduz latência O(n) → ~O(ceil(n/concurrency)).
-    rag_concurrency = max(int(getattr(state, "rag_concurrency", 3) or 1), 1)
+    rag_concurrency = max(int(getattr(state, "rag_concurrency", 6) or 1), 1)
     _sem = asyncio.Semaphore(rag_concurrency)
 
     async def _process_profile(profile: dict, retriever, top_k: int, sem) -> dict:

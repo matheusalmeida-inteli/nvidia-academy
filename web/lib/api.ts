@@ -22,6 +22,7 @@ export interface Briefing {
   wrapper_warning: boolean;
   evidencia_insuficiente?: boolean;
   fit_breakdown: Record<string, number>;
+  criterio_selecao?: string;
   nurture_suggestion: string;
   recomendacoes: Recommendation[];
   proximos_comerciais: string[];
@@ -212,7 +213,22 @@ export async function getCandidate(id: number): Promise<Candidate> {
 }
 
 export async function createCandidate(
-  body: { startup_id: number; notes?: string; assigned_to?: string },
+  body: {
+    startup_id: number;
+    notes?: string;
+    assigned_to?: string;
+    inception_fit_score?: number;
+    categoria_ai?: string;
+    wrapper_warning?: boolean;
+    moat_score?: number;
+    tech_score?: number;
+    sector_score?: number;
+    traction_score?: number;
+    nurture_cadence?: string;
+    next_action_date?: string;
+    next_action_type?: string;
+    next_action_desc?: string;
+  },
 ): Promise<Candidate> {
   const res = await fetch(`${API_URL}/candidates`, {
     method: "POST",
@@ -229,7 +245,7 @@ export async function updateCandidate(
     status: string;
     notes: string;
     assigned_to: string;
-    next_action_date: string;
+    next_action_date: string | null;
     next_action_type: string;
     next_action_desc: string;
     nurture_cadence: string;
@@ -251,7 +267,7 @@ export async function deleteCandidate(id: number): Promise<void> {
 
 // ---- Nurture ----
 
-export async function getUpcomingNurture(days = 7): Promise<Candidate[]> {
+export async function getUpcomingNurture(days = 30): Promise<Candidate[]> {
   const res = await fetch(`${API_URL}/nurture/upcoming?days=${days}`);
   if (!res.ok) throw new Error("Failed to list upcoming nurture");
   return res.json();

@@ -94,6 +94,8 @@ class Briefing:
     inception_fit_score: float = 0.0
     wrapper_warning: bool = False
     fit_breakdown: dict = field(default_factory=dict)
+    # Critério que selecionou esta startup (relevance × fit) — transparência anti-"aleatório"
+    criterio_selecao: str = ""
     # Nutrição
     nurture_suggestion: str = ""
     # Fontes

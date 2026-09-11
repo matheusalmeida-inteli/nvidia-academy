@@ -34,6 +34,12 @@ from rag.retrieval.reranker import CohereRerank, Reranker, RerankFallback
 # Keyed by a hash of the corpus texts so a corpus change invalidates it.
 _CORPUS_EMBEDDING_CACHE: dict[str, list[np.ndarray]] = {}
 
+# In-process cache of successful retrieve() calls, so repeated RAG queries
+# (demo re-runs, duplicate query strings across startups, retries) skip the
+# Cohere embed + Qdrant + Cohere rerank roundtrips that spike latency.
+# Key: (query, top_k_dense, top_k_sparse, top_k_rerank).
+_RETRIEVE_CACHE: dict[tuple, dict] = {}
+
 
 # Nomes canônicos de techs NVIDIA: variações ("NVIDIA RAPIDS" vs "RAPIDS",
 # "NVIDIA Triton Inference Server" vs "Triton", "NVIDIA AI Enterprise" vs
@@ -203,7 +209,42 @@ class HybridRetriever:
         top_k_sparse: int = 20,
         top_k_rerank: int = 3,
     ) -> list[dict]:
-        """Executa a recuperação híbrida: dense + sparse e, em seguida, rerank."""
+        """Executa a recuperação híbrida: dense + sparse e, em seguida, rerank.
+
+        Resultados bem-sucedidos são cacheados em memória (chave = query +
+        top_k) — consultas repetidas no mesmo processo pulam as chamadas
+        externas (Cohere/Qdrant) que causam picos de latência.
+        """
+        key = (query, top_k_dense, top_k_sparse, top_k_rerank)
+        cached = _RETRIEVE_CACHE.get(key)
+        if cached is not None:
+            self.last_pre_rerank_keys = cached["pre_keys"]
+            self.last_pre_rerank_scores = cached["pre_scores"]
+            self.last_post_rerank_keys = cached["post_keys"]
+            self.last_post_rerank_scores = cached["post_scores"]
+            self.last_rerank_delta = cached["delta"]
+            self.last_stage_times = {"cache": 0.0}
+            return cached["results"]
+
+        results = await self._retrieve_impl(query, top_k_dense, top_k_sparse, top_k_rerank)
+        _RETRIEVE_CACHE[key] = {
+            "results": results,
+            "pre_keys": list(self.last_pre_rerank_keys),
+            "pre_scores": list(self.last_pre_rerank_scores or []),
+            "post_keys": list(self.last_post_rerank_keys),
+            "post_scores": list(self.last_post_rerank_scores or []),
+            "delta": dict(self.last_rerank_delta or {}),
+        }
+        return results
+
+    async def _retrieve_impl(
+        self,
+        query: str,
+        top_k_dense: int = 20,
+        top_k_sparse: int = 20,
+        top_k_rerank: int = 3,
+    ) -> list[dict]:
+        """Implementação da recuperação híbrida (sem cache)."""
         import time as _time
         self.last_stage_times = {}
         t0 = _time.perf_counter()

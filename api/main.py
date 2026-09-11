@@ -1,10 +1,10 @@
 """FastAPI bridge — multi-agent pipeline + candidates + nurture."""
 from __future__ import annotations
 
-import asyncio
 import json
 import os
 from contextlib import asynccontextmanager
+from datetime import date
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -46,6 +46,7 @@ class BriefingResponse(BaseModel):
     inception_fit_score: float = 0.0
     wrapper_warning: bool = False
     fit_breakdown: dict = Field(default_factory=dict)
+    criterio_selecao: str = ""
     nurture_suggestion: str = ""
     recomendacoes: list[RecommendationItem] = Field(default_factory=list)
     proximos_comerciais: list[str] = Field(default_factory=list)
@@ -108,6 +109,17 @@ class CandidateCreate(BaseModel):
     startup_id: int
     notes: str | None = None
     assigned_to: str | None = None
+    inception_fit_score: float | None = None
+    categoria_ai: str | None = None
+    wrapper_warning: bool | None = None
+    moat_score: float | None = None
+    tech_score: float | None = None
+    sector_score: float | None = None
+    traction_score: float | None = None
+    nurture_cadence: str | None = None
+    next_action_date: str | None = None
+    next_action_type: str | None = None
+    next_action_desc: str | None = None
 
 
 class CandidateUpdate(BaseModel):
@@ -329,6 +341,7 @@ def get_app() -> FastAPI:
                 inception_fit_score=float(b.get("inception_fit_score", 0)),
                 wrapper_warning=bool(b.get("risco_wrapper", False)),
                 fit_breakdown=b.get("fit_breakdown", {}),
+                criterio_selecao=b.get("criterio_selecao", ""),
                 nurture_suggestion=b.get("nurture_suggestion", ""),
                 recomendacoes=recs_b,
                 proximos_comerciais=b.get("proximos_comerciais", []) or [],
@@ -383,16 +396,43 @@ def get_app() -> FastAPI:
     @_app.post("/candidates", response_model=CandidateResponse)
     async def create_candidate(body: CandidateCreate):
         """Cria um candidato (upsert por startup_id) e retorna o registro completo."""
+        next_date = None
+        if body.next_action_date:
+            try:
+                next_date = date.fromisoformat(body.next_action_date)
+            except ValueError:
+                next_date = None
         pool = await _pool()
         async with pool.acquire() as conn:
             row = await conn.fetchrow(
-                """INSERT INTO candidates (startup_id, notes, assigned_to)
-                   VALUES ($1, $2, $3)
+                """INSERT INTO candidates (
+                       startup_id, notes, assigned_to, inception_fit_score,
+                       categoria_ai, wrapper_warning, moat_score, tech_score,
+                       sector_score, traction_score, nurture_cadence,
+                       next_action_date, next_action_type, next_action_desc
+                   )
+                   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
                    ON CONFLICT (startup_id) DO UPDATE
-                   SET notes = EXCLUDED.notes, assigned_to = EXCLUDED.assigned_to,
+                   SET notes = EXCLUDED.notes,
+                       assigned_to = EXCLUDED.assigned_to,
+                       inception_fit_score = EXCLUDED.inception_fit_score,
+                       categoria_ai = EXCLUDED.categoria_ai,
+                       wrapper_warning = EXCLUDED.wrapper_warning,
+                       moat_score = EXCLUDED.moat_score,
+                       tech_score = EXCLUDED.tech_score,
+                       sector_score = EXCLUDED.sector_score,
+                       traction_score = EXCLUDED.traction_score,
+                       nurture_cadence = EXCLUDED.nurture_cadence,
+                       next_action_date = EXCLUDED.next_action_date,
+                       next_action_type = EXCLUDED.next_action_type,
+                       next_action_desc = EXCLUDED.next_action_desc,
                        updated_at = NOW()
                    RETURNING *""",
-                body.startup_id, body.notes, body.assigned_to,
+                body.startup_id, body.notes, body.assigned_to, body.inception_fit_score,
+                body.categoria_ai, body.wrapper_warning, body.moat_score,
+                body.tech_score, body.sector_score, body.traction_score,
+                body.nurture_cadence, next_date, body.next_action_type,
+                body.next_action_desc,
             )
             startup = await conn.fetchval(
                 "SELECT nome FROM startups WHERE id = $1", body.startup_id
@@ -459,6 +499,11 @@ def get_app() -> FastAPI:
         pool = await _pool()
         updates, params, p = [], [], 1
         for field, value in body.model_dump(exclude_unset=True).items():
+            if field == "next_action_date" and value:
+                try:
+                    value = date.fromisoformat(value)
+                except ValueError:
+                    value = None
             updates.append(f"{field} = ${p}")
             params.append(value)
             p += 1

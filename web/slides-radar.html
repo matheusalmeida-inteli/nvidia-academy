@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVIDIA Startup AI Radar — Slides</title>
+<style>
+  :root {
+    --nvidia: #76b900;
+    --bg: #0a0e14;
+    --card: #121a26;
+    --text: #e8edf4;
+    --muted: #93a2b5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .slide {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 6vh 9vw;
+  }
+  .slide.active { display: flex; }
+  h1 { font-size: clamp(2rem, 5vw, 4.2rem); line-height: 1.1; margin-bottom: 0.9rem; }
+  h2 { font-size: clamp(1.5rem, 3.2vw, 2.6rem); color: var(--nvidia); margin-bottom: 2rem; font-weight: 700; }
+  p, li { font-size: clamp(1.05rem, 2vw, 1.6rem); line-height: 1.6; color: var(--muted); }
+  ul { list-style: none; }
+  li { position: relative; padding-left: 1.8rem; margin-bottom: 0.8rem; }
+  li::before {
+    content: "▸";
+    color: var(--nvidia);
+    position: absolute; left: 0; font-weight: 700;
+  }
+  .kicker {
+    display: inline-block;
+    font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--nvidia); font-weight: 700; margin-bottom: 0.8rem;
+  }
+  .grid { display: grid; gap: 1rem; }
+  .cards { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .card {
+    background: var(--card);
+    border: 1px solid #223046;
+    border-radius: 12px;
+    padding: 1.2rem 1.3rem;
+  }
+  .card h3 { color: var(--nvidia); font-size: clamp(1rem, 1.8vw, 1.4rem); margin-bottom: 0.4rem; }
+  .card p, .card li { font-size: clamp(0.9rem, 1.5vw, 1.15rem); color: var(--muted); }
+  .card p { padding-left: 0; }
+  .flow {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;
+    font-size: clamp(0.85rem, 1.4vw, 1.15rem); color: var(--text);
+  }
+  .node {
+    background: var(--card); border: 1px solid #2c3e5a; border-radius: 8px;
+    padding: 0.5rem 0.9rem; white-space: nowrap;
+  }
+  .arrow { color: var(--nvidia); font-weight: 700; }
+  .subtitle { font-size: clamp(1rem, 2vw, 1.5rem); color: var(--muted); max-width: 55ch; }
+  .highlight { color: var(--nvidia); font-weight: 700; }
+  .metric {
+    font-size: clamp(1.6rem, 3.4vw, 3rem);
+    color: var(--nvidia); font-weight: 800;
+  }
+  .footer {
+    position: fixed; bottom: 1rem; left: 0; right: 0;
+    text-align: center; color: #4c5a6d; font-size: 0.8rem; pointer-events: none;
+  }
+  .pill {
+    display: inline-block; background: #16202f; color: var(--text);
+    border: 1px solid #2c3e5a; border-radius: 999px;
+    padding: 0.35rem 1rem; margin: 0.25rem 0.4rem 0 0;
+    font-size: clamp(0.85rem, 1.5vw, 1.15rem);
+  }
+</style>
+</head>
+<body>
+<div class="footer">NVIDIA Startup AI Radar — setas para navegar</div>
+
+<!-- 1 · Capa -->
+<section class="slide active">
+  <span class="kicker">Processo Seletivo Inteli Academy · TAPI</span>
+  <h1>NVIDIA Startup<br>AI Radar</h1>
+  <p class="subtitle">Identificar, qualificar e nutrir startups brasileiras AI-native para o programa NVIDIA Inception.</p>
+</section>
+
+<!-- 2 · O problema (TAPI §1) -->
+<section class="slide">
+  <span class="kicker">Contexto de negócio · TAPI §1</span>
+  <h2>O problema</h2>
+  <ul>
+    <li>Grandes labs de IA (OpenAI, Anthropic, DeepMind) subiram na cadeia de valor</li>
+    <li>Passaram de fornecedores de modelo para <span class="highlight">APIs, agentes e produtos finais</span></li>
+    <li>Ameaça direta a startups que são apenas <span class="highlight">wrappers de LLM</span></li>
+    <li>Oportunidade para startups <span class="highlight">AI-native</span>: software, dados próprios, automação e serviço especializado</li>
+  </ul>
+</section>
+
+<!-- 3 · Pergunta norteadora (TAPI §3) -->
+<section class="slide">
+  <span class="kicker">Pergunta norteadora · TAPI §3</span>
+  <h2>A pergunta</h2>
+  <p style="font-size: clamp(1.3rem, 2.6vw, 2.2rem); color: var(--text); line-height: 1.5;">
+    Como a NVIDIA pode identificar, atrair e nutrir startups brasileiras AI-native
+    em um contexto no qual os grandes labs de IA ameaçam quem depende de wrappers de LLM?
+  </p>
+</section>
+
+<!-- 4 · Objetivos (TAPI §2) -->
+<section class="slide">
+  <span class="kicker">Escopo do TAPI · Objetivos §2</span>
+  <h2>O que o sistema deve fazer</h2>
+  <div class="grid cards">
+    <div class="card"><h3>1</h3><p>Consultar e filtrar startups com sinais de IA intensiva</p></div>
+    <div class="card"><h3>2</h3><p>Estruturar informações públicas em perfil</p></div>
+    <div class="card"><h3>3</h3><p>Avaliar gaps na stack de IA</p></div>
+    <div class="card"><h3>4</h3><p>Consultar a base de conhecimento NVIDIA</p></div>
+    <div class="card"><h3>5</h3><p>Recomendar as tecnologias NVIDIA adequadas</p></div>
+    <div class="card"><h3>6</h3><p>Gerar briefing executivo — comercial, técnico e comunitário</p></div>
+  </div>
+</section>
+
+<!-- 5 · Arquitetura -->
+<section class="slide">
+  <span class="kicker">Arquitetura</span>
+  <h2>Pipeline multi-agente (LangGraph)</h2>
+  <div class="flow">
+    <span class="node">Query Planner</span><span class="arrow">→</span>
+    <span class="node">Retriever</span><span class="arrow">→</span>
+    <span class="node">Extractor</span><span class="arrow">→</span>
+    <span class="node">Classifier</span><span class="arrow">→</span>
+    <span class="node">Evidence Validator</span><span class="arrow">→</span>
+    <span class="node">Supervisor</span><span class="arrow">→</span>
+    <span class="node">NVIDIA RAG</span><span class="arrow">→</span>
+    <span class="node">Recommendation</span><span class="arrow">→</span>
+    <span class="node">Briefing</span>
+  </div>
+  <ul style="margin-top: 2rem;">
+    <li>Cada nó volta ao <span class="highlight">Supervisor</span>: replan, retry ou degradação graciosa</li>
+    <li>Todo nó tem fallback rule-based — pipeline nunca quebra</li>
+    <li>Camadas: Next.js → FastAPI → LangGraph → PostgreSQL + Qdrant + RAG</li>
+  </ul>
+</section>
+
+<!-- 6 · Fluxo de uma query -->
+<section class="slide">
+  <span class="kicker">Exemplo real</span>
+  <h2>De "uma frase" ao briefing</h2>
+  <p style="color: var(--text); margin-bottom: 1.5rem;">"AI-native startups de fintech usando LLMs"</p>
+  <ul>
+    <li><span class="highlight">Query Planner</span> converte em keywords e filtros</li>
+    <li><span class="highlight">Retriever</span> devolve até 25 startups do PostgreSQL</li>
+    <li><span class="highlight">Extractor</span> monta perfil: stack, casos de uso, gaps, moat</li>
+    <li><span class="highlight">Classifier</span> → ai_native · ai_enabled · non_ai + fit score</li>
+    <li><span class="highlight">Evidence Validator</span> checa evidências rastreáveis</li>
+    <li><span class="highlight">RAG</span> + <span class="highlight">Recommendation</span> priorizam techs NVIDIA com justificativa</li>
+    <li><span class="highlight">Briefing</span> entrega o relatório executivo pronto</li>
+  </ul>
+</section>
+
+<!-- 7 · Demonstração ao vivo -->
+<section class="slide">
+  <span class="kicker">Demonstração ao vivo</span>
+  <h2>Agora, na prática</h2>
+  <p style="color: var(--text); margin-bottom: 1.5rem;">Rodando a mesma consulta no site, em tempo real:</p>
+  <ul>
+    <li>Consulta em linguagem natural no dashboard</li>
+    <li>Resultados com categoria e <span class="highlight">inception fit score</span></li>
+    <li>Detecção anti-wrapper visível na resposta</li>
+    <li>Briefing executivo com os 3 ângulos</li>
+    <li>Exportação 1-click do briefing (JSON/PDF)</li>
+  </ul>
+  <p style="margin-top: 1.5rem;" class="subtitle">Acompanhem na tela.</p>
+</section>
+
+<!-- 8 · Diferenciais -->
+<section class="slide">
+  <span class="kicker">Diferenciais</span>
+  <h2>Por que o Radar se destaca</h2>
+  <div class="grid cards">
+    <div class="card"><h3>Groundedness</h3><p>Referência sem a tecnologia no chunk é descartada. Zero citação inventada.</p></div>
+    <div class="card"><h3>Scoring auditável</h3><p>0.6 RAG + 0.25 regras + 0.15 setor, com breakdown por recomendação.</p></div>
+    <div class="card"><h3>Anti-wrapper</h3><p>Detecta sinais de wrapper de LLM (moat baixo) e sinaliza risco_wrapper.</p></div>
+    <div class="card"><h3>Telemetria NDJSON</h3><p>Timing por nó, tokens e scores por execução.</p></div>
+  </div>
+</section>
+
+<!-- 9 · Resultados -->
+<section class="slide">
+  <span class="kicker">Maturidade da entrega</span>
+  <h2>Resultados</h2>
+  <div class="grid cards" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+    <div class="card"><div class="metric">110</div><p>testes automatizados</p></div>
+    <div class="card"><div class="metric">0</div><p>erros de lint</p></div>
+    <div class="card"><div class="metric">1-click</div><p>exportação do briefing (JSON/PDF)</p></div>
+    <div class="card"><div class="metric">API 2.1.0</div><p>/query · /candidates · /nurture</p></div>
+  </div>
+</section>
+
+<!-- 10 · Encerramento -->
+<section class="slide">
+  <span class="kicker">Resumo</span>
+  <h2>Da pergunta à resposta</h2>
+  <ul>
+    <li>Um TAPI "identificar, atrair e nutrir" virou um <span class="highlight">pipeline de 9 agentes</span></li>
+    <li>Com RAG próprio, detecção <span class="highlight">anti-wrapper</span> e recomendação auditável</li>
+    <li>Rodando <span class="highlight">sem depender de API key</span> pra funcionar</li>
+    <li>Para apoiar o Gerente de Startups &amp; VCs da NVIDIA no Brasil</li>
+  </ul>
+  <p style="margin-top: 2rem; color: var(--text); font-size: clamp(1.2rem, 2.4vw, 2rem);">
+    Obrigado!
+  </p>
+</section>
+
+<script>
+  const slides = document.querySelectorAll(".slide");
+  let i = 0;
+  function show(n) {
+    slides[i].classList.remove("active");
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides[i].classList.add("active");
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") show(i + 1);
+    if (e.key === "ArrowLeft" || e.key === "PageUp") show(i - 1);
+  });
+  document.addEventListener("click", () => show(i + 1));
+</script>
+</body>
+</html>

@@ -49,9 +49,24 @@ export function BriefingPanel({ briefing }: { briefing: Briefing }) {
         setError("Startup não encontrada no banco");
         return;
       }
+      const m = briefing.nurture_suggestion.match(/Cadência\s+(\w+)/i);
+      const cadence = m ? m[1].toLowerCase() : "mensal";
+      const d = briefing.nurture_suggestion.match(/(\d{4}-\d{2}-\d{2})/);
+      const fb = briefing.fit_breakdown || {};
       await createCandidate({
         startup_id: startup.id,
         notes: `Fit ${Math.round(briefing.inception_fit_score * 100)}% — ${briefing.nurture_suggestion || "Adicionado via análise"}`,
+        inception_fit_score: briefing.inception_fit_score,
+        categoria_ai: briefing.maturidade_ai,
+        wrapper_warning: briefing.wrapper_warning,
+        moat_score: typeof fb.moat === "number" ? fb.moat : undefined,
+        tech_score: typeof fb.tech === "number" ? fb.tech : undefined,
+        sector_score: typeof fb.sector === "number" ? fb.sector : undefined,
+        traction_score: typeof fb.traction === "number" ? fb.traction : undefined,
+        nurture_cadence: cadence,
+        next_action_date: d ? d[1] : undefined,
+        next_action_type: "follow_up",
+        next_action_desc: briefing.nurture_suggestion,
       });
       setSaved(true);
     } catch (e: any) {
@@ -87,6 +102,11 @@ export function BriefingPanel({ briefing }: { briefing: Briefing }) {
                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 font-medium border border-amber-200">evidência baixa</span>
               )}
             </div>
+            {briefing.criterio_selecao && (
+              <p className="mt-1.5 text-[10px] text-text-tertiary/80 leading-snug">
+                {briefing.criterio_selecao}
+              </p>
+            )}
           </div>
         </div>
       </div>

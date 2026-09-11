@@ -937,7 +937,7 @@ async def recommendation(state: AgentState) -> AgentState:
     # em RAG, limitado aos 2 primeiros itens p/ controlar latência/custo.
     # Paralelizada com semáforo (mesmo padrão do nvidia_rag) — 24 calls
     # seriais viraram ~4 concorrentes; sem chave LLM continua instantânea.
-    rag_concurrency = max(int(getattr(state, "rag_concurrency", 3) or 1), 1)
+    rag_concurrency = max(int(getattr(state, "rag_concurrency", 6) or 1), 1)
     _sem = asyncio.Semaphore(rag_concurrency)
 
     async def _synth(rec: dict, gaps: list[str]) -> None:

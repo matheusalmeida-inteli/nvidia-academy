@@ -45,7 +45,7 @@ def _next_action_date_for(cadence: str) -> str:
     elif cadence == "quinzenal":
         d = today + timedelta(days=14)
     elif cadence == "mensal":
-        d = today + timedelta(days=30)
+        d = today + timedelta(days=28)
     else:
         d = today + timedelta(days=60)
     return d.isoformat()
@@ -122,6 +122,17 @@ def build_briefing(state: AgentState) -> Briefing:
     top = max(recommendations, key=_top_key)
     empresa = top.get("nome", "N/A")
 
+    # Transparência da escolha (anti-"startup aleatória"): mostra por quê.
+    _p_sel = next(
+        (p for p in state.extracted_profiles if p.get("nome") == empresa), {}
+    )
+    _rel_sel = _relevance_score(_p_sel, state.user_query or "")
+    _fit_sel = top.get("inception_fit_score", 0.0)
+    criterio_selecao = (
+        f"Selecionada por melhor fit × relevância à consulta "
+        f"(fit {_fit_sel:.0%}, relevância {_rel_sel:.2f}, score {_fit_sel * _rel_sel:.3f})"
+    )
+
     profile = next(
         (p for p in state.extracted_profiles if p.get("nome") == empresa), {}
     )
@@ -131,7 +142,6 @@ def build_briefing(state: AgentState) -> Briefing:
     evidence = next(
         (e for e in state.evidence_results if e.get("nome") == empresa), {}
     )
-    evidencia_insuficiente = evidence.get("valido") is False or (evidence.get("n_evidencias_validadas") or 0) < 2
 
     # Constrói Recommendation dataclasses
     recs = []
@@ -285,6 +295,7 @@ def build_briefing(state: AgentState) -> Briefing:
         inception_fit_score=classif.get("inception_fit_score", 0.0),
         wrapper_warning=classif.get("risco_wrapper", False),
         fit_breakdown=classif.get("fit_breakdown", {}),
+        criterio_selecao=criterio_selecao,
         nurture_suggestion=nurture_suggestion,
         fontes_consultadas=fontes,
         fontes_rag=fontes_rag_all,
